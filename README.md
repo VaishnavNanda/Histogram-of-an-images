@@ -12,8 +12,6 @@ Read the gray and color image using imread()
 ### Step2:
 Print the image using imshow().
 
-
-
 ### Step3:
 Use calcHist() function to mark the image in graph frequency for gray and color image.
 
@@ -25,27 +23,108 @@ The Histogram of gray scale image and color image is shown.
 
 
 ## Program:
-```python
-# Developed By: 
-# Register Number: 
-
-
-
-
-
-
+#### Developed By: VAISHNAV NANDA
+#### Register Number: 212222240112
+### Histogram for Bright Image 
 ```
-## Output:
-### Input Grayscale Image and Color Image
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the color image
+image = cv2.imread('cat.jpg')
+
+# Convert the image to grayscale
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+hist_original = cv2.calcHist([gray_image], [0], None, [256], [0, 256])
+
+# Apply histogram equalization
+equalized_image = cv2.equalizeHist(gray_image)
+
+# Plotting the original grayscale image, equalized image, and histograms
+plt.figure(figsize=(10, 7))
+
+# Show original grayscale image
+plt.subplot(2, 2, 1)
+plt.imshow(gray_image, cmap='gray')
+plt.title('Original Grayscale Image')
+plt.axis('off')
+
+# Show equalized grayscale image
+plt.subplot(2, 2, 2)
+plt.imshow(equalized_image, cmap='gray')
+plt.title('Equalized Image')
+plt.axis('off')
+
+# Plot histogram of the original grayscale image
+plt.subplot(2, 2, 3)
+plt.plot(hist_original, color='black')
+plt.title('Original Histogram')
+plt.xlim([0, 256])
+
+# Plot histogram of the equalized image
+plt.subplot(2, 2, 4)
+hist_equalized = cv2.calcHist([equalized_image], [0], None, [256], [0, 256])
+plt.plot(hist_equalized, color='black')
+plt.title('Equalized Histogram')
+plt.xlim([0, 256])
+
+plt.tight_layout()
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/38b5b27e-59c3-4834-8b82-fefa4365f393)
 
 
-### Histogram of Grayscale Image and any channel of Color Image
+### Dark Image 
+```
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
 
+# Load the color image
+image = cv2.imread('dog.jpg')
 
+# Convert the image to grayscale
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-### Histogram Equalization of Grayscale Image.
+# Apply histogram equalization
+equalized_image = cv2.equalizeHist(gray_image)
 
+# Plotting the original grayscale image, equalized image, and histograms
+plt.figure(figsize=(10, 7))
 
+# Show original grayscale image
+plt.subplot(2, 2, 1)
+plt.imshow(gray_image, cmap='gray')
+plt.title('Original Grayscale Image')
+plt.axis('off')
+
+# Show equalized grayscale image
+plt.subplot(2, 2, 2)
+plt.imshow(equalized_image, cmap='gray')
+plt.title('Equalized Image')
+plt.axis('off')
+
+# Plot histogram of the original grayscale image
+plt.subplot(2, 2, 3)
+hist_original = cv2.calcHist([gray_image], [0], None, [256], [0, 256])
+plt.plot(hist_original, color='black')
+plt.title('Original Histogram')
+plt.xlim([0, 256])
+
+# Plot histogram of the equalized image
+plt.subplot(2, 2, 4)
+hist_equalized = cv2.calcHist([equalized_image], [0], None, [256], [0, 256])
+plt.plot(hist_equalized, color='black')
+plt.title('Equalized Histogram')
+plt.xlim([0, 256])
+
+plt.tight_layout()
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/deaaaece-5923-4f20-b9d8-cffdb5d4ac51)
 
 
 ## Result: 
